@@ -1,3 +1,6 @@
+from uuid import uuid4
+
+
 class UserData:
     __count = 0
 
@@ -67,8 +70,30 @@ class UserData:
         del self.__age
 
 
-user1 = UserData('Baxtiyor', 'Tuychiyev', 24)
-user1.lastname = 'Tuych'
-user1.firstname = 'Baxa'
-print(user1)
-print(user1.get_count)
+class Automobile:
+    __num__auto = 0
+
+    def __init__(self, make, model, color, price, km=0):
+        self.make = make
+        self.model = model
+        self.color = color
+        self.price = price
+        self.__km = km
+        self.__id = uuid4()
+        Automobile.__num__auto += 1
+
+    @classmethod
+    def get_num_auto(cls):
+        return cls.__num__auto
+
+    def get_km(self):
+        return self.__km
+
+    def add_km(self, value):
+        if value > 0:
+            self.__km += value
+        else:
+            print("Пробег не может быть уменьшен")
+
+    def get_id(self):
+        return self.__id
